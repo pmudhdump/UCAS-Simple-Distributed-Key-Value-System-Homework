@@ -1,7 +1,9 @@
-import socket
+import grpc
 import logging
-from utils.socket_protocol import SocketProtocol
-from utils.uuid_tag import *
+from utils.uuid_tag import generate_operation_id
+import protos.kvstore_pb2 as kvstore_pb2
+import protos.kvstore_pb2_grpc as kvstore_pb2_grpc
+
 
 class DistributedKVClient:
     def __init__(self, host="127.0.0.1", port=5000):
@@ -13,7 +15,6 @@ class DistributedKVClient:
         """
         self.host = host
         self.port = port
-        self.protocol = SocketProtocol()
         self.setup_logging()
 
     def setup_logging(self):
@@ -37,11 +38,38 @@ class DistributedKVClient:
             dict: 服务器返回的响应。
         """
         try:
-            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
-                client_socket.connect((self.host, self.port))
-                self.protocol.send(client_socket, request)
-                response = self.protocol.receive(client_socket)
-                return response
+            with grpc.insecure_channel(f"{self.host}:{self.port}") as channel:
+                stub = kvstore_pb2_grpc.KVStoreServiceStub(channel)
+                if request["action"] == "put":
+                    response = stub.Put(kvstore_pb2.PutRequest(
+                        key=request["key"],
+                        value=request["value"],
+                        operation_id=request["operation_id"]
+                    ))
+                elif request["action"] == "get":
+                    response = stub.Get(kvstore_pb2.GetRequest(
+                        key=request["key"],
+                        operation_id=request["operation_id"]
+                    ))
+                elif request["action"] == "delete":
+                    response = stub.Delete(kvstore_pb2.DeleteRequest(
+                        key=request["key"],
+                        operation_id=request["operation_id"]
+                    ))
+                elif request["action"] == "list":
+                    response = stub.List(kvstore_pb2.ListRequest(operation_id=request["operation_id"]))
+                elif request["action"] == "clear":
+                    response = stub.Clear(kvstore_pb2.ClearRequest(operation_id=request["operation_id"]))
+                else:
+                    raise ValueError("Invalid action.")
+
+                return {
+                    "status": "success" if response.success else "error",
+                    "message": response.message,
+                    "value": response.value if hasattr(response, 'value') else None,
+                    "data": response.keys if hasattr(response, 'keys') else None
+                }
+
         except Exception as e:
             self.logger.error(f"Failed to connect to server: {e}")
             return {"status": "error", "message": str(e)}
@@ -56,7 +84,6 @@ class DistributedKVClient:
             print(f"Success: {response.get('message', response.get('value', response.get('data', 'No details.')))}")
         else:
             print(f"Error: {response.get('message', 'Unknown error.')}")
-            self.logger.error(f"Error response: {response}")
 
     def run_cli(self):
         """运行命令行交互界面"""
@@ -74,17 +101,36 @@ class DistributedKVClient:
                 if command == "PUT":
                     key = input("Enter key: ").strip()
                     value = input("Enter value: ").strip()
-                    request = {"action": "put", "key": key, "value": value , "operation_id": generate_operation_id()}
+                    request = {
+                        "action": "put",
+                        "key": key,
+                        "value": value,
+                        "operation_id": generate_operation_id()
+                    }
                 elif command == "GET":
                     key = input("Enter key: ").strip()
-                    request = {"action": "get", "key": key, "operation_id": generate_operation_id()}
+                    request = {
+                        "action": "get",
+                        "key": key,
+                        "operation_id": generate_operation_id()
+                    }
                 elif command == "DELETE":
                     key = input("Enter key: ").strip()
-                    request = {"action": "delete", "key": key, "operation_id": generate_operation_id()}
+                    request = {
+                        "action": "delete",
+                        "key": key,
+                        "operation_id": generate_operation_id()
+                    }
                 elif command == "LIST":
-                    request = {"action": "list", "operation_id": generate_operation_id()}
+                    request = {
+                        "action": "list",
+                        "operation_id": generate_operation_id()
+                    }
                 elif command == "CLEAR":
-                    request = {"action": "clear", "operation_id": generate_operation_id()}
+                    request = {
+                        "action": "clear",
+                        "operation_id": generate_operation_id()
+                    }
                 else:
                     print("Invalid command. Try again.")
                     continue
@@ -103,6 +149,7 @@ class DistributedKVClient:
             except Exception as e:
                 print(f"Error: {e}")
                 self.logger.error(f"Unexpected error: {e}")
+
 
 if __name__ == "__main__":
     client = DistributedKVClient()

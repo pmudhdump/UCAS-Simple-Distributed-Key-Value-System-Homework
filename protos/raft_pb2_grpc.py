@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-import raft_pb2 as raft__pb2
+import protos.raft_pb2 as raft__pb2
 
 GRPC_GENERATED_VERSION = '1.68.1'
 GRPC_VERSION = grpc.__version__
