@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package kvstore;
+
+service KVStoreService {
+  rpc Put (PutRequest) returns (PutResponse);
+  rpc Get (GetRequest) returns (GetResponse);
+  rpc Delete (DeleteRequest) returns (DeleteResponse);
+  rpc List (ListRequest) returns (ListResponse);
+  rpc Clear (ClearRequest) returns (ClearResponse);
+}
+
+message PutRequest {
+  string key = 1;
+  string value = 2;
+  string operation_id = 3;
+}
+
+message PutResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message GetRequest {
+  string key = 1;
+  string operation_id = 2;
+}
+
+message GetResponse {
+  bool success = 1;
+  string value = 2;
+  string message = 3;
+}
+
+message DeleteRequest {
+  string key = 1;
+  string operation_id = 2;
+}
+
+message DeleteResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message ListRequest {
+  string operation_id = 1;
+}
+
+message ListResponse {
+  bool success = 1;
+  repeated string keys = 2;
+  string message = 3;
+}
+
+message ClearRequest {
+  string operation_id = 1;
+}
+
+message ClearResponse {
+  bool success = 1;
+  string message = 2;
+}

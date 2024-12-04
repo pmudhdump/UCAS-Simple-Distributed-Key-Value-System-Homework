@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package raft;
+
+// Raft 请求投票
+message VoteRequest {
+  int32 term = 1;
+  string candidateId = 2;
+}
+
+message VoteResponse {
+  bool voteGranted = 1;
+  int32 term = 2;
+}
+
+// 日志复制请求
+message AppendEntriesRequest {
+  int32 term = 1;
+  string leaderId = 2;
+  int32 prevLogIndex = 3;
+  int32 prevLogTerm = 4;
+  repeated LogEntry entries = 5;
+  int32 leaderCommit = 6;
+}
+
+message AppendEntriesResponse {
+  bool success = 1;
+  int32 term = 2;
+}
+
+// 日志条目
+message LogEntry {
+  int32 term = 1;
+  string command = 2;
+}
+
+// 服务定义
+service Raft {
+  rpc RequestVote(VoteRequest) returns (VoteResponse);
+  rpc AppendEntries(AppendEntriesRequest) returns (AppendEntriesResponse);
+  rpc Heartbeat(AppendEntriesRequest) returns (AppendEntriesResponse);
+}
