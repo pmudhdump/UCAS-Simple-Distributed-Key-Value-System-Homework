@@ -5,8 +5,10 @@ from concurrent import futures
 import time
 import protos.kvstore_pb2 as kvstore_pb2
 import protos.kvstore_pb2_grpc as kvstore_pb2_grpc
-from servernode.raft import RaftNode  # 假设你有 Raft 协议实现模块
+from servernode.raft import RaftNode
 from servernode.consistent_hash import ConsistentHashing  # 引入一致性哈希
+from raft_config import raft_config
+
 
 class DistributedKVServerNode(kvstore_pb2_grpc.KVStoreServiceServicer):
     def __init__(self, host="127.0.0.1", port=5000, datanodes=None, raft_config=None):
@@ -19,26 +21,23 @@ class DistributedKVServerNode(kvstore_pb2_grpc.KVStoreServiceServicer):
             raft_config (dict): Raft 配置参数。
         """
         if raft_config is None:
-            raft_config = {"node_id": 1, "cluster": ["127.0.0.1", 5000]}
+            raft_config = raft_config
         if datanodes is None:
             self.datanodes = [["127.0.0.1", 6000], ["127.0.0.1", 6001], ["127.0.0.1", 6002]]
         self.host = host
         self.port = port
-        self.raft_node = RaftNode(self.host,self.port ,raft_config)  # 初始化 Raft 节点
+        self.raft_node = RaftNode(self.host, self.port, raft_config)  # 初始化 Raft 节点
         self.setup_logging()
-        self.raft_node.start()
+        # self.raft_node.start()
 
         # 使用一致性哈希来选择节点
-        self.consistent_hashing = ConsistentHashing([f"{datanode[0]}:{datanode[1]}" for datanode in self.datanodes])  # 使用节点的host:port
+        self.consistent_hashing = ConsistentHashing(
+            [f"{datanode[0]}:{datanode[1]}" for datanode in self.datanodes])  # 使用节点的host:port
 
     def setup_logging(self):
         """设置日志记录"""
         self.logger = logging.getLogger("DistributedKVServerNode")
         self.logger.setLevel(logging.DEBUG)  # 改为 DEBUG 级别以便记录更多细节
-        # 创建日志文件的处理器
-        file_handler = logging.FileHandler("servernode.log")
-        file_handler.setLevel(logging.DEBUG)
-        file_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
 
         # 创建控制台的处理器
         console_handler = logging.StreamHandler()
@@ -46,7 +45,6 @@ class DistributedKVServerNode(kvstore_pb2_grpc.KVStoreServiceServicer):
         console_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
 
         # 添加处理器到日志记录器
-        self.logger.addHandler(file_handler)
         self.logger.addHandler(console_handler)
 
     # gRPC服务方法
@@ -65,7 +63,8 @@ class DistributedKVServerNode(kvstore_pb2_grpc.KVStoreServiceServicer):
         operation_id = request.operation_id
         self.logger.info(f"Received GET request: Key = {key}, Operation ID = {operation_id}")
         response = self.handle_get_request(key, operation_id)
-        return kvstore_pb2.GetResponse(success=response['status'] == "success", value=response.get('data', ''), message=response.get('message', ''))
+        return kvstore_pb2.GetResponse(success=response['status'] == "success", value=response.get('data', ''),
+                                       message=response.get('message', ''))
 
     def Delete(self, request, context):
         """处理 DELETE 请求"""
@@ -80,7 +79,8 @@ class DistributedKVServerNode(kvstore_pb2_grpc.KVStoreServiceServicer):
         operation_id = request.operation_id
         self.logger.info(f"Received LIST request: Operation ID = {operation_id}")
         response = self.raft_node.query_log({"action": "list"})
-        return kvstore_pb2.ListResponse(success=response['status'] == "success", keys=response.get('data', []), message=response.get('message', ''))
+        return kvstore_pb2.ListResponse(success=response['status'] == "success", keys=response.get('data', []),
+                                        message=response.get('message', ''))
 
     def Clear(self, request, context):
         """处理 CLEAR 请求"""
@@ -117,7 +117,8 @@ class DistributedKVServerNode(kvstore_pb2_grpc.KVStoreServiceServicer):
         for node in replica_nodes:
             data_from_replica = self.get_data_from_peer(node, key)
             if data_from_replica != data_from_target:
-                self.logger.warning(f"Data inconsistency found between target node {target_node} and replica node {node}.")
+                self.logger.warning(
+                    f"Data inconsistency found between target node {target_node} and replica node {node}.")
                 return {"status": "error", "message": "Data inconsistency found"}
         return {"status": "success", "data": data_from_target, "message": "Key found"}
 
@@ -151,7 +152,8 @@ class DistributedKVServerNode(kvstore_pb2_grpc.KVStoreServiceServicer):
         with grpc.insecure_channel(f'{peer_host}:{peer_port}') as channel:
             stub = kvstore_pb2_grpc.KVStoreServiceStub(channel)
             if request['action'] == 'put':
-                stub.Put(kvstore_pb2.PutRequest(key=request['key'], value=request['value'], operation_id=request['operation_id']))
+                stub.Put(kvstore_pb2.PutRequest(key=request['key'], value=request['value'],
+                                                operation_id=request['operation_id']))
             elif request['action'] == 'delete':
                 stub.Delete(kvstore_pb2.DeleteRequest(key=request['key'], operation_id=request['operation_id']))
 
@@ -172,14 +174,18 @@ class DistributedKVServerNode(kvstore_pb2_grpc.KVStoreServiceServicer):
             self.logger.debug(f"Data from peer {peer_host}:{peer_port}: {response.value}")
             return response.value
 
+
 # 启动 gRPC 服务器
 def serve():
+    from raft_config import raft_config
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    kvstore_pb2_grpc.add_KVStoreServiceServicer_to_server(DistributedKVServerNode(), server)
+    kvstore_pb2_grpc.add_KVStoreServiceServicer_to_server(
+        DistributedKVServerNode(host="127.0.0.1", port=5000, raft_config=raft_config), server)
     server.add_insecure_port('[::]:5000')
     server.start()
     print("Server running on port 5000")
     server.wait_for_termination()
+
 
 if __name__ == '__main__':
     serve()

@@ -20,35 +20,35 @@ class RaftNode(raft_pb2_grpc.RaftServiceServicer):
         self.commit_index = 0  # 已提交的日志索引
         self.last_heartbeat = time.time()
 
-        # 配置日志文件
-        self.setup_logger()
+        # 配置数据日志文件
+        self.setup_data_logger()
 
         # RPC 服务配置
         self.server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
         raft_pb2_grpc.add_RaftServiceServicer_to_server(self, self.server)
         self.server.add_insecure_port(f'{self.host}:{self.port}')
 
-    def setup_logger(self):
-        """设置日志配置"""
-        log_filename = f"raft{self.port}.log"
-        self.logger = logging.getLogger(f"RaftNode{self.port}")
-        self.logger.setLevel(logging.DEBUG)
+    def setup_data_logger(self):
+        """设置数据操作日志配置"""
+        data_log_filename = f"data{self.port}.log"
+        self.data_logger = logging.getLogger(f"RaftNodeData{self.port}")
+        self.data_logger.setLevel(logging.INFO)
 
         # 创建文件处理器和日志格式
-        file_handler = logging.FileHandler(log_filename)
-        file_handler.setLevel(logging.DEBUG)
-        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        file_handler = logging.FileHandler(data_log_filename)
+        file_handler.setLevel(logging.INFO)
+        formatter = logging.Formatter('%(asctime)s - %(message)s')
         file_handler.setFormatter(formatter)
 
-        self.logger.addHandler(file_handler)
+        self.data_logger.addHandler(file_handler)
 
     def start(self):
         """启动Raft节点"""
         self.server.start()
-        self.logger.info(f"RaftNode {self.host}:{self.port} is running")
+        print(f"RaftNode {self.host}:{self.port} is running")
 
         if not self.peers:  # 如果没有其他节点，直接成为领导者
-            self.logger.info("No peers detected. This node is running as the sole leader.")
+            print(f"Node {self.host}:{self.port} is running as sole leader (no peers).")
             self.state = "LEADER"
             self.start_heartbeat()
         else:
@@ -68,11 +68,11 @@ class RaftNode(raft_pb2_grpc.RaftServiceServicer):
         self.voted_for = self.host
         self.last_heartbeat = time.time()
 
-        self.logger.info(f"Node {self.host}:{self.port} is starting an election for term {self.term}")
+        print(f"Node {self.host}:{self.port} is starting an election for term {self.term}")
 
         # 如果没有其他节点，直接成为领导者
         if not self.peers:
-            self.logger.info(f"Node {self.host}:{self.port} became leader by default (no peers).")
+            print(f"Node {self.host}:{self.port} became leader by default (no peers).")
             self.state = "LEADER"
             self.start_heartbeat()
             return
@@ -92,7 +92,7 @@ class RaftNode(raft_pb2_grpc.RaftServiceServicer):
                 votes += 1
             if votes > len(self.peers) // 2:
                 self.state = "LEADER"
-                self.logger.info(f"Node {self.host}:{self.port} became leader with term {self.term}")
+                print(f"Node {self.host}:{self.port} became leader with term {self.term}")
                 self.start_heartbeat()
                 return
 
@@ -104,7 +104,7 @@ class RaftNode(raft_pb2_grpc.RaftServiceServicer):
             response = stub.RequestVote(request)
             return response
         except grpc.RpcError as e:
-            self.logger.error(f"Failed to send vote request to {peer}: {e}")
+            print(f"Failed to send vote request to {peer}: {e}")
             return None
 
     def start_heartbeat(self):
@@ -117,7 +117,7 @@ class RaftNode(raft_pb2_grpc.RaftServiceServicer):
                 if len(self.peers) > 0:
                     for peer in self.peers:
                         # 发送心跳
-                        self.logger.info(f"Node {self.host}:{self.port} sending heartbeat to {peer} in term {self.term}")
+                        print(f"Node {self.host}:{self.port} sending heartbeat to {peer} in term {self.term}")
                         request = raft_pb2.AppendEntriesRequest(
                             term=self.term,
                             leader_id=self.host,
@@ -138,13 +138,13 @@ class RaftNode(raft_pb2_grpc.RaftServiceServicer):
             channel = grpc.insecure_channel(f'{peer}')
             stub = raft_pb2_grpc.RaftServiceStub(channel)
             stub.AppendEntries(request)
-            self.logger.info(f"Node {self.host}:{self.port} successfully sent AppendEntries to {peer}")
+            print(f"Node {self.host}:{self.port} successfully sent AppendEntries to {peer}")
         except grpc.RpcError as e:
-            self.logger.error(f"Failed to send append entries to {peer}: {e}")
+            print(f"Failed to send append entries to {peer}: {e}")
 
     def RequestVote(self, request, context):
         """处理投票请求"""
-        self.logger.info(f"Node {self.host}:{self.port} received vote request from {request.candidate_id} for term {request.term}")
+        print(f"Node {self.host}:{self.port} received vote request from {request.candidate_id} for term {request.term}")
 
         if request.term > self.term:
             self.term = request.term
@@ -153,14 +153,14 @@ class RaftNode(raft_pb2_grpc.RaftServiceServicer):
 
         if request.term >= self.term and (self.voted_for is None or self.voted_for == request.candidate_id):
             self.voted_for = request.candidate_id
-            self.logger.info(f"Node {self.host}:{self.port} voted for {request.candidate_id} in term {self.term}")
+            print(f"Node {self.host}:{self.port} voted for {request.candidate_id} in term {self.term}")
             return raft_pb2.RequestVoteResponse(term=self.term, vote_granted=True)
-        self.logger.info(f"Node {self.host}:{self.port} rejected vote request from {request.candidate_id} in term {self.term}")
+        print(f"Node {self.host}:{self.port} rejected vote request from {request.candidate_id} in term {self.term}")
         return raft_pb2.RequestVoteResponse(term=self.term, vote_granted=False)
 
     def AppendEntries(self, request, context):
         """处理日志追加请求"""
-        self.logger.info(f"Node {self.host}:{self.port} received AppendEntries from leader {request.leader_id} in term {request.term}")
+        print(f"Node {self.host}:{self.port} received AppendEntries from leader {request.leader_id} in term {request.term}")
 
         if request.term < self.term:
             return raft_pb2.AppendEntriesResponse(term=self.term, success=False)
@@ -171,7 +171,44 @@ class RaftNode(raft_pb2_grpc.RaftServiceServicer):
 
         return raft_pb2.AppendEntriesResponse(term=self.term, success=True)
 
+    def append_log(self, log_entry):
+        """记录日志，并同步到所有跟随者"""
+        return
+        # log_entry['term'] = self.term  # 确保日志条目包含当前任期
+        # self.logs.append(log_entry)  # 将日志条目添加到本地日志
+        # self.data_logger.info(f"Appended log: {log_entry}")  # 记录到文件
+        #
+        # # 向所有跟随者发送日志追加请求
+        # request = raft_pb2.AppendEntriesRequest(
+        #     term=self.term,
+        #     leader_id=self.host,
+        #     prev_log_index=len(self.logs) - 1,
+        #     prev_log_term=self.logs[-2]['term'] if len(self.logs) > 1 else 0,
+        #     entries=[raft_pb2.LogEntry(**log_entry)],
+        #     leader_commit=self.commit_index
+        # )
+        #
+        # # 发送到所有的 peer 节点
+        # for peer in self.peers:
+        #     self.send_append_entries(peer, request)
 
+    def query_log(self, log_query):
+        """查询外部操作日志（例如 GET 请求）"""
+        print(f"Action: {log_query['action']}")
+        self.data_logger.info(f"Action: {log_query['action']}")
+
+
+
+
+# 运行 Raft 节点
+if __name__ == '__main__':
+    raft_config = {
+        'peers': ['localhost:5001', ],
+        'host': 'localhost',
+        'port': 5000
+    }
+    node = RaftNode(raft_config['host'], raft_config['port'], raft_config)
+    node.start()
 
 # 运行 Raft 节点
 if __name__ == '__main__':
