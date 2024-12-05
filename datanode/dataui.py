@@ -2,11 +2,11 @@ import sys
 import grpc
 import logging
 from concurrent import futures
-import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'protos'))
 import protos.kvstore_pb2 as kvstore_pb2
+# from protos import kvstore_pb2 as kvstore_pb2
 import protos.kvstore_pb2_grpc as kvstore_pb2_grpc
 from datanode.rocks import RocksDictStore  # 引入 RocksDictStore 类
+
 
 class DistributedKVDataNode(kvstore_pb2_grpc.KVStoreServiceServicer):
     def __init__(self, host="127.0.0.1", port=5001):
@@ -55,7 +55,8 @@ class DistributedKVDataNode(kvstore_pb2_grpc.KVStoreServiceServicer):
         key = request.key
         self.logger.info(f"Received GET request: Key = {key}")
         response = self.handle_get_request(key)
-        return kvstore_pb2.GetResponse(success=response['status'] == "success", value=response.get('data', ''), message=response.get('message', ''))
+        return kvstore_pb2.GetResponse(success=response['status'] == "success", value=response.get('data', ''),
+                                       message=response.get('message', ''))
 
     def Delete(self, request, context):
         """处理 DELETE 请求"""
@@ -115,6 +116,7 @@ class DistributedKVDataNode(kvstore_pb2_grpc.KVStoreServiceServicer):
             self.logger.error(f"Error clearing data: {e}")
             return {"status": "error", "message": f"Error clearing data: {e}"}
 
+
 # 启动 gRPC 服务器
 def serve(port):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
@@ -123,6 +125,7 @@ def serve(port):
     server.start()
     print(f"DataNode running on port {port}")
     server.wait_for_termination()
+
 
 def serve_auto():
     server1 = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
@@ -145,20 +148,20 @@ def serve_auto():
     server2.wait_for_termination()
     server3.wait_for_termination()
 
+
 def argv_check():
     if len(sys.argv) != 2:
         print("Usage: python datanode.py <port>")
         sys.exit(1)
 
 
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python datanode.py <port>")
-        sys.exit(1)
-
+def main():
+    argv_check()
     port = int(sys.argv[1])
-    port = 6000
     serve(port)
 
 # if __name__ == "__main__":
 #     serve_auto()
+
+if __name__ == '__main__':
+    main()

@@ -25,8 +25,8 @@ if _version_not_supported:
     )
 
 
-class RaftStub(object):
-    """服务定义
+class RaftServiceStub(object):
+    """定义Raft服务
     """
 
     def __init__(self, channel):
@@ -36,51 +36,54 @@ class RaftStub(object):
             channel: A grpc.Channel.
         """
         self.RequestVote = channel.unary_unary(
-                '/raft.Raft/RequestVote',
-                request_serializer=raft__pb2.VoteRequest.SerializeToString,
-                response_deserializer=raft__pb2.VoteResponse.FromString,
+                '/raft.RaftService/RequestVote',
+                request_serializer=raft__pb2.RequestVoteRequest.SerializeToString,
+                response_deserializer=raft__pb2.RequestVoteResponse.FromString,
                 _registered_method=True)
         self.AppendEntries = channel.unary_unary(
-                '/raft.Raft/AppendEntries',
+                '/raft.RaftService/AppendEntries',
                 request_serializer=raft__pb2.AppendEntriesRequest.SerializeToString,
                 response_deserializer=raft__pb2.AppendEntriesResponse.FromString,
                 _registered_method=True)
         self.Heartbeat = channel.unary_unary(
-                '/raft.Raft/Heartbeat',
-                request_serializer=raft__pb2.AppendEntriesRequest.SerializeToString,
-                response_deserializer=raft__pb2.AppendEntriesResponse.FromString,
+                '/raft.RaftService/Heartbeat',
+                request_serializer=raft__pb2.HeartbeatRequest.SerializeToString,
+                response_deserializer=raft__pb2.HeartbeatResponse.FromString,
                 _registered_method=True)
 
 
-class RaftServicer(object):
-    """服务定义
+class RaftServiceServicer(object):
+    """定义Raft服务
     """
 
     def RequestVote(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """请求投票
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def AppendEntries(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """追加日志条目
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def Heartbeat(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """发送心跳
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
 
-def add_RaftServicer_to_server(servicer, server):
+def add_RaftServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'RequestVote': grpc.unary_unary_rpc_method_handler(
                     servicer.RequestVote,
-                    request_deserializer=raft__pb2.VoteRequest.FromString,
-                    response_serializer=raft__pb2.VoteResponse.SerializeToString,
+                    request_deserializer=raft__pb2.RequestVoteRequest.FromString,
+                    response_serializer=raft__pb2.RequestVoteResponse.SerializeToString,
             ),
             'AppendEntries': grpc.unary_unary_rpc_method_handler(
                     servicer.AppendEntries,
@@ -89,19 +92,19 @@ def add_RaftServicer_to_server(servicer, server):
             ),
             'Heartbeat': grpc.unary_unary_rpc_method_handler(
                     servicer.Heartbeat,
-                    request_deserializer=raft__pb2.AppendEntriesRequest.FromString,
-                    response_serializer=raft__pb2.AppendEntriesResponse.SerializeToString,
+                    request_deserializer=raft__pb2.HeartbeatRequest.FromString,
+                    response_serializer=raft__pb2.HeartbeatResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'raft.Raft', rpc_method_handlers)
+            'raft.RaftService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('raft.Raft', rpc_method_handlers)
+    server.add_registered_method_handlers('raft.RaftService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class Raft(object):
-    """服务定义
+class RaftService(object):
+    """定义Raft服务
     """
 
     @staticmethod
@@ -118,9 +121,9 @@ class Raft(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/raft.Raft/RequestVote',
-            raft__pb2.VoteRequest.SerializeToString,
-            raft__pb2.VoteResponse.FromString,
+            '/raft.RaftService/RequestVote',
+            raft__pb2.RequestVoteRequest.SerializeToString,
+            raft__pb2.RequestVoteResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -145,7 +148,7 @@ class Raft(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/raft.Raft/AppendEntries',
+            '/raft.RaftService/AppendEntries',
             raft__pb2.AppendEntriesRequest.SerializeToString,
             raft__pb2.AppendEntriesResponse.FromString,
             options,
@@ -172,9 +175,9 @@ class Raft(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/raft.Raft/Heartbeat',
-            raft__pb2.AppendEntriesRequest.SerializeToString,
-            raft__pb2.AppendEntriesResponse.FromString,
+            '/raft.RaftService/Heartbeat',
+            raft__pb2.HeartbeatRequest.SerializeToString,
+            raft__pb2.HeartbeatResponse.FromString,
             options,
             channel_credentials,
             insecure,

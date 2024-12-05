@@ -19,13 +19,14 @@ class DistributedKVServerNode(kvstore_pb2_grpc.KVStoreServiceServicer):
             raft_config (dict): Raft 配置参数。
         """
         if raft_config is None:
-            raft_config = {"node_id": 1, "cluster": None}
+            raft_config = {"node_id": 1, "cluster": ["127.0.0.1", 5000]}
         if datanodes is None:
             self.datanodes = [["127.0.0.1", 6000], ["127.0.0.1", 6001], ["127.0.0.1", 6002]]
         self.host = host
         self.port = port
-        self.raft_node = RaftNode(self, raft_config)  # 初始化 Raft 节点
+        self.raft_node = RaftNode(self.host,self.port ,raft_config)  # 初始化 Raft 节点
         self.setup_logging()
+        self.raft_node.start()
 
         # 使用一致性哈希来选择节点
         self.consistent_hashing = ConsistentHashing([f"{datanode[0]}:{datanode[1]}" for datanode in self.datanodes])  # 使用节点的host:port
@@ -95,21 +96,29 @@ class DistributedKVServerNode(kvstore_pb2_grpc.KVStoreServiceServicer):
         target_node = self.consistent_hashing.get_node(key)
         node_index = self.consistent_hashing.nodes.index(target_node)
         replica_nodes = [
-            self.consistent_hashing.nodes[(node_index + 1) % len(self.consistent_hashing.nodes)],
-            self.consistent_hashing.nodes[(node_index + 2) % len(self.consistent_hashing.nodes)]
+            self.consistent_hashing.nodes[(node_index + 1) % len(self.consistent_hashing.nodes)]
         ]
         # 存储数据到目标节点和副本节点
         self.logger.debug(f"Storing data at target node {target_node} and replica nodes {replica_nodes}.")
         request = {"action": "put", "key": key, "value": value, "operation_id": operation_id}
         self.send_data_to_datanodes(request)
         self.raft_node.append_log({"action": "put", "key": key, "value": value, "operation_id": operation_id})
-        return {"status": "success", "message": f"Data stored at node {replica_nodes}."}
+        return {"status": "success", "message": f"Data stored at node {target_node} and {replica_nodes}."}
 
     def handle_get_request(self, key, operation_id):
         """处理 GET 请求"""
         target_node = self.consistent_hashing.get_node(key)
         data_from_target = self.get_data_from_peer(target_node, key)
         self.logger.debug(f"Retrieved data from node {target_node}: {data_from_target}")
+        node_index = self.consistent_hashing.nodes.index(target_node)
+        replica_nodes = [
+            self.consistent_hashing.nodes[(node_index + 1) % len(self.consistent_hashing.nodes)]
+        ]
+        for node in replica_nodes:
+            data_from_replica = self.get_data_from_peer(node, key)
+            if data_from_replica != data_from_target:
+                self.logger.warning(f"Data inconsistency found between target node {target_node} and replica node {node}.")
+                return {"status": "error", "message": "Data inconsistency found"}
         return {"status": "success", "data": data_from_target, "message": "Key found"}
 
     def handle_delete_request(self, key, operation_id):
@@ -127,8 +136,7 @@ class DistributedKVServerNode(kvstore_pb2_grpc.KVStoreServiceServicer):
         target_node = self.consistent_hashing.get_node(key)
         node_index = self.consistent_hashing.nodes.index(target_node)
         replica_nodes = [
-            self.consistent_hashing.nodes[(node_index + 1) % len(self.consistent_hashing.nodes)],
-            self.consistent_hashing.nodes[(node_index + 2) % len(self.consistent_hashing.nodes)]
+            self.consistent_hashing.nodes[(node_index + 1) % len(self.consistent_hashing.nodes)]
         ]
         self.logger.debug(f"Sending data to target node {target_node} and replica nodes {replica_nodes}.")
         for node in [target_node] + replica_nodes:
