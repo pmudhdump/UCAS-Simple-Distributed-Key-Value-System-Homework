@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb4accea-ed23-426f-87c5-c140933741c8" name="更改" comment="Raft算法投票实现">
-      <change beforePath="$PROJECT_DIR$/protos/raft.proto" beforeDir="false" afterPath="$PROJECT_DIR$/protos/raft.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protos/raft_pb2.py" beforeDir="false" afterPath="$PROJECT_DIR$/protos/raft_pb2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protos/raft_pb2_grpc.py" beforeDir="false" afterPath="$PROJECT_DIR$/protos/raft_pb2_grpc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servernode/raft.py" beforeDir="false" afterPath="$PROJECT_DIR$/servernode/raft.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servernode/raft_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/servernode/raft_config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servernode/run_raft.py" beforeDir="false" afterPath="$PROJECT_DIR$/servernode/run_raft.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servernode/serverui.py" beforeDir="false" afterPath="$PROJECT_DIR$/servernode/serverui.py" afterDir="false" />
+    <list default="true" id="bb4accea-ed23-426f-87c5-c140933741c8" name="更改" comment="奇怪的代码更新与实现">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +23,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "pmudhdump"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/pmudhdump/UCAS-Simple-Distributed-Key-Value-System-Homework.git",
+    "accountId": "bf562ef4-12f1-465a-b2c7-191e82441ba3"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://H:/anaconda3/envs/ai/Lib/threading.py" root0="SKIP_INSPECTION" />
   </component>
@@ -71,7 +77,7 @@
       <recent name="K:\desktop\Master-UCAS\UCASCourse\大数据技术\Dkey_value2\protos" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.clientui">
+  <component name="RunManager" selected="Python.run_raft">
     <configuration name="clientui" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Dkey_value2" />
       <option name="ENV_FILES" value="" />
@@ -270,9 +276,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.clientui" />
         <item itemvalue="Python.run_raft" />
         <item itemvalue="Python.serverui" />
+        <item itemvalue="Python.clientui" />
         <item itemvalue="Python.dataui_6000" />
         <item itemvalue="Python.raft" />
       </list>
@@ -301,7 +307,7 @@
       <workItem from="1733362938029" duration="6553000" />
       <workItem from="1733391517386" duration="8012000" />
       <workItem from="1733400483132" duration="8331000" />
-      <workItem from="1733409076229" duration="1042000" />
+      <workItem from="1733409076229" duration="4079000" />
     </task>
     <task id="LOCAL-00001" summary="凌冬将至">
       <option name="closed" value="true" />
@@ -343,7 +349,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733401260954</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="奇怪的代码更新与实现">
+      <option name="closed" value="true" />
+      <created>1733410400140</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1733410400140</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -366,7 +380,8 @@
     <MESSAGE value="Revert &quot;基础逻辑测试&quot;&#10;&#10;This reverts commit e5274ec1" />
     <MESSAGE value="Raft算法投票实现" />
     <MESSAGE value="Revert &quot;Raft算法投票实现&quot;&#10;&#10;This reverts commit 814f19df" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;Raft算法投票实现&quot;&#10;&#10;This reverts commit 814f19df" />
+    <MESSAGE value="奇怪的代码更新与实现" />
+    <option name="LAST_COMMIT_MESSAGE" value="奇怪的代码更新与实现" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -406,8 +421,8 @@
     <SUITE FILE_PATH="coverage/Dkey_value2$dataui_6001.coverage" NAME="dataui_6001 覆盖结果" MODIFIED="1733408715534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Dkey_value2$clientui.coverage" NAME="clientui 覆盖结果" MODIFIED="1733408763853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/client" />
     <SUITE FILE_PATH="coverage/Dkey_value2$dataui_6000.coverage" NAME="dataui_6000 覆盖结果" MODIFIED="1733408713395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/datanode" />
-    <SUITE FILE_PATH="coverage/Dkey_value2$serverui.coverage" NAME="serverui 覆盖结果" MODIFIED="1733408723317" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/servernode" />
-    <SUITE FILE_PATH="coverage/Dkey_value2$run_raft.coverage" NAME="run_raft 覆盖结果" MODIFIED="1733408736335" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/servernode" />
+    <SUITE FILE_PATH="coverage/Dkey_value2$serverui.coverage" NAME="serverui 覆盖结果" MODIFIED="1733412016000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/servernode" />
+    <SUITE FILE_PATH="coverage/Dkey_value2$run_raft.coverage" NAME="run_raft 覆盖结果" MODIFIED="1733412271891" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/servernode" />
     <SUITE FILE_PATH="coverage/Dkey_value2$dataui.coverage" NAME="dataui_6000 覆盖结果" MODIFIED="1733328587583" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/datanode" />
     <SUITE FILE_PATH="coverage/Dkey_value2$run_server.coverage" NAME="run_server 覆盖结果" MODIFIED="1733405060807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Dkey_value2$dataui_6002.coverage" NAME="dataui_6002 覆盖结果" MODIFIED="1733408716758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
