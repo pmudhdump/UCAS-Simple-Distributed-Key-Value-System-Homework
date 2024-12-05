@@ -1,5 +1,5 @@
 raft_config = {
-    'peers': ['localhost:5001'],
+    'peers': ['localhost:7001'],
     'host': 'localhost',
-    'port': 5000
+    'port': 7000
 }

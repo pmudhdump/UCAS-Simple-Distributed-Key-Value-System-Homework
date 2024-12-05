@@ -5,6 +5,8 @@ from concurrent import futures
 import time
 import protos.kvstore_pb2 as kvstore_pb2
 import protos.kvstore_pb2_grpc as kvstore_pb2_grpc
+import protos.raft_pb2 as raft_pb2
+import protos.raft_pb2_grpc as raft_pb2_grpc
 from servernode.raft import RaftNode
 from servernode.consistent_hash import ConsistentHashing  # 引入一致性哈希
 from raft_config import raft_config
@@ -28,6 +30,7 @@ class DistributedKVServerNode(kvstore_pb2_grpc.KVStoreServiceServicer):
         self.port = port
         self.raft_node = RaftNode(self.host, self.port, raft_config)  # 初始化 Raft 节点
         self.setup_logging()
+        threading.Thread(target=self.raft_node.start, daemon=True).start()
         # self.raft_node.start()
 
         # 使用一致性哈希来选择节点
@@ -128,7 +131,7 @@ class DistributedKVServerNode(kvstore_pb2_grpc.KVStoreServiceServicer):
         self.logger.debug(f"Deleting data from node {target_node}.")
         request = {"action": "delete", "key": key, "operation_id": operation_id}
         self.send_data_to_datanodes(request)
-        self.raft_node.append_log({"action": "delete", "key": key, "operation_id": operation_id})
+        # self.raft_node.append_log({"action": "delete", "key": key, "operation_id": operation_id})
         return {"status": "success", "message": f"Data deleted from node {target_node}."}
 
     def send_data_to_datanodes(self, request):

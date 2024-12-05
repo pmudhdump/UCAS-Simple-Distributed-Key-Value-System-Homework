@@ -1,0 +1,24 @@
+2024-12-05 20:02:39,862 - INFO - Received PUT request: Key = 3, Value = 4
+2024-12-05 20:02:39,862 - INFO - Received PUT request: Key = 3, Value = 4
+2024-12-05 20:02:39,863 - INFO - Key '3' stored successfully.
+2024-12-05 20:02:39,863 - INFO - Key '3' stored successfully.
+2024-12-05 20:08:34,888 - INFO - Received PUT request: Key = 4, Value = 5
+2024-12-05 20:08:34,888 - INFO - Key '4' stored successfully.
+2024-12-05 20:25:55,889 - INFO - Received PUT request: Key = 3, Value = 4
+2024-12-05 20:25:55,890 - INFO - Key '3' stored successfully.
+2024-12-05 20:26:06,176 - INFO - Received GET request: Key = 3
+2024-12-05 20:26:06,177 - INFO - Retrieved key '3' with value '4'.
+2024-12-05 20:54:52,164 - INFO - Received PUT request: Key = 1, Value = 3
+2024-12-05 20:54:52,165 - INFO - Key '1' stored successfully.
+2024-12-05 20:56:57,318 - INFO - Received PUT request: Key = 3, Value = 4
+2024-12-05 20:56:57,319 - INFO - Key '3' stored successfully.
+2024-12-05 20:57:43,558 - INFO - Received PUT request: Key = 3, Value = 4
+2024-12-05 20:57:43,559 - INFO - Key '3' stored successfully.
+2024-12-05 21:15:32,758 - INFO - Received PUT request: Key = 5, Value = 6
+2024-12-05 21:15:32,758 - INFO - Key '5' stored successfully.
+2024-12-05 21:16:02,542 - INFO - Received PUT request: Key = 6, Value = 6
+2024-12-05 21:16:02,542 - INFO - Key '6' stored successfully.
+2024-12-05 21:26:31,142 - INFO - Received PUT request: Key = 6, Value = 6
+2024-12-05 21:26:31,143 - INFO - Key '6' stored successfully.
+2024-12-05 21:52:02,923 - INFO - Received PUT request: Key = 6, Value = 7
+2024-12-05 21:52:02,923 - INFO - Key '6' stored successfully.

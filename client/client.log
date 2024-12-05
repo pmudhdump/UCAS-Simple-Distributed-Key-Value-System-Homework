@@ -1,0 +1,205 @@
+2024-12-04 21:33:53,779 - INFO - Sending request: {'action': 'put', 'key': '1', 'value': '1', 'operation_id': '5a2d0463-dca8-4080-af16-7829e2c3499a'}
+2024-12-04 21:33:53,787 - INFO - Received response: {'status': 'success', 'message': 'Data stored at node 127.0.0.1:6000.', 'value': None, 'data': None}
+2024-12-04 21:35:01,119 - INFO - Sending request: {'action': 'put', 'key': '1', 'value': '1', 'operation_id': '83597fca-f4b2-4951-9b05-b419da51da08'}
+2024-12-04 21:35:01,122 - INFO - Received response: {'status': 'success', 'message': 'Data stored at node 127.0.0.1:6000.', 'value': None, 'data': None}
+2024-12-04 21:35:30,223 - INFO - Sending request: {'action': 'put', 'key': '1', 'value': '1', 'operation_id': '0575ec75-b426-4433-a1d1-98cad7bf2eaf'}
+2024-12-04 21:35:30,231 - INFO - Received response: {'status': 'success', 'message': 'Data stored at node 127.0.0.1:6000.', 'value': None, 'data': None}
+2024-12-04 21:36:11,346 - INFO - Sending request: {'action': 'put', 'key': '1', 'value': '1', 'operation_id': '2773ff1d-297f-4870-8ed0-023f14c760ef'}
+2024-12-04 21:36:28,277 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "IOCP/Socket: Connection reset (An existing connection was forcibly closed by the remote host.
+ -- 10054)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-04T13:36:28.2652147+00:00", grpc_status:14, grpc_message:"IOCP/Socket: Connection reset (An existing connection was forcibly closed by the remote host.\r\n -- 10054)"}"
+>
+2024-12-04 21:36:28,277 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNAVAILABLE\n\tdetails = "IOCP/Socket: Connection reset (An existing connection was forcibly closed by the remote host.\r\n -- 10054)"\n\tdebug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-04T13:36:28.2652147+00:00", grpc_status:14, grpc_message:"IOCP/Socket: Connection reset (An existing connection was forcibly closed by the remote host.\\r\\n -- 10054)"}"\n>'}
+2024-12-04 21:36:34,576 - INFO - Sending request: {'action': 'put', 'key': '1', 'value': '1', 'operation_id': '10f2c41c-2ba7-4b58-99a0-03e7b2017865'}
+2024-12-04 22:16:39,661 - INFO - Sending request: {'action': 'put', 'key': '1', 'value': '1', 'operation_id': '78ee4119-ab08-484e-907e-04f63867d2cf'}
+2024-12-04 22:16:39,680 - INFO - Received response: {'status': 'success', 'message': "Data stored at node ['127.0.0.1:6000', '127.0.0.1:6000'].", 'value': None, 'data': None}
+2024-12-04 22:34:00,373 - INFO - Sending request: {'action': 'put', 'key': '1', 'value': '1', 'operation_id': 'b48202b8-a526-4aee-8399-b8b3aed165aa'}
+2024-12-04 22:34:00,381 - INFO - Received response: {'status': 'success', 'message': "Data stored at node ['127.0.0.1:6000', '127.0.0.1:6000'].", 'value': None, 'data': None}
+2024-12-04 22:34:07,245 - INFO - Sending request: {'action': 'get', 'key': '1', 'operation_id': '793e83c6-b4e1-468f-a4be-94877137eede'}
+2024-12-04 22:34:07,251 - INFO - Received response: {'status': 'success', 'message': 'Key found', 'value': '1', 'data': None}
+2024-12-04 22:38:56,802 - INFO - Sending request: {'action': 'delete', 'key': '1', 'operation_id': '0e1fa442-c16e-435f-8abb-4af16102271f'}
+2024-12-04 22:38:56,807 - INFO - Received response: {'status': 'success', 'message': 'Data deleted from node 127.0.0.1:6000.', 'value': None, 'data': None}
+2024-12-04 22:39:00,668 - INFO - Sending request: {'action': 'get', 'key': '1', 'operation_id': '14a8f3fe-8320-42c0-bd34-a6e0e41a895c'}
+2024-12-04 22:39:00,671 - INFO - Received response: {'status': 'success', 'message': 'Key found', 'value': '', 'data': None}
+2024-12-04 22:45:52,445 - INFO - Sending request: {'action': 'put', 'key': '2', 'value': '2', 'operation_id': '7bb71825-f35d-461a-b931-335c63295023'}
+2024-12-04 22:45:52,450 - INFO - Received response: {'status': 'success', 'message': "Data stored at node ['127.0.0.1:6000', '127.0.0.1:6000'].", 'value': None, 'data': None}
+2024-12-04 22:46:01,051 - INFO - Sending request: {'action': 'get', 'key': '2', 'operation_id': 'ae43de2a-2e11-4680-ba52-de1afa876065'}
+2024-12-04 22:46:01,055 - INFO - Received response: {'status': 'success', 'message': 'Key found', 'value': '2', 'data': None}
+2024-12-04 22:46:11,273 - INFO - Sending request: {'action': 'put', 'key': '2', 'value': '3', 'operation_id': 'da8fe160-1cea-479c-8b7b-0e503f676cef'}
+2024-12-04 22:46:11,277 - INFO - Received response: {'status': 'success', 'message': "Data stored at node ['127.0.0.1:6000', '127.0.0.1:6000'].", 'value': None, 'data': None}
+2024-12-04 22:46:14,204 - INFO - Sending request: {'action': 'get', 'key': '2', 'operation_id': '7159912a-73ba-47ad-9c87-14112908f8f3'}
+2024-12-04 22:46:14,208 - INFO - Received response: {'status': 'success', 'message': 'Key found', 'value': '3', 'data': None}
+2024-12-04 23:06:15,841 - INFO - Sending request: {'action': 'put', 'key': '1', 'value': '1', 'operation_id': 'eef706cb-7fe3-46df-acca-e30b5974beed'}
+2024-12-04 23:06:15,849 - INFO - Received response: {'status': 'success', 'message': "Data stored at node ['127.0.0.1:6002', '127.0.0.1:6000'].", 'value': None, 'data': None}
+2024-12-04 23:07:36,565 - INFO - Sending request: {'action': 'get', 'key': '1', 'operation_id': 'd2fcea94-d526-48bd-a7dc-3489e3ba3ba8'}
+2024-12-04 23:07:36,569 - INFO - Received response: {'status': 'success', 'message': 'Key found', 'value': '1', 'data': None}
+2024-12-04 23:12:30,701 - INFO - Sending request: {'action': 'get', 'key': '1', 'operation_id': '2f2f3e31-ea01-40a4-ad18-3046b369e9a7'}
+2024-12-04 23:12:30,708 - INFO - Received response: {'status': 'success', 'message': 'Key found', 'value': '1', 'data': None}
+2024-12-04 23:12:32,598 - INFO - Sending request: {'action': 'list', 'operation_id': 'e3a50d3c-a2c9-491f-8ced-5a1468520145'}
+2024-12-04 23:12:32,625 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: 'RaftNode' object has no attribute 'query_log'"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-04T15:12:32.6018318+00:00", grpc_status:2, grpc_message:"Exception calling application: \'RaftNode\' object has no attribute \'query_log\'"}"
+>
+2024-12-04 23:12:32,625 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNKNOWN\n\tdetails = "Exception calling application: \'RaftNode\' object has no attribute \'query_log\'"\n\tdebug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-04T15:12:32.6018318+00:00", grpc_status:2, grpc_message:"Exception calling application: \\\'RaftNode\\\' object has no attribute \\\'query_log\\\'"}"\n>'}
+2024-12-04 23:19:55,433 - INFO - Sending request: {'action': 'clear', 'operation_id': '1b51167b-838d-4d00-8152-07c1e6b9d205'}
+2024-12-04 23:19:55,454 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: 'NoneType' object is not subscriptable"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Exception calling application: \'NoneType\' object is not subscriptable", grpc_status:2, created_time:"2024-12-04T15:19:55.4417502+00:00"}"
+>
+2024-12-04 23:19:55,454 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNKNOWN\n\tdetails = "Exception calling application: \'NoneType\' object is not subscriptable"\n\tdebug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Exception calling application: \\\'NoneType\\\' object is not subscriptable", grpc_status:2, created_time:"2024-12-04T15:19:55.4417502+00:00"}"\n>'}
+2024-12-04 23:20:04,022 - INFO - Sending request: {'action': 'get', 'key': '1', 'operation_id': '4a883182-7c9c-4116-a3d4-615268297120'}
+2024-12-04 23:20:04,031 - INFO - Received response: {'status': 'success', 'message': 'Key found', 'value': '1', 'data': None}
+2024-12-04 23:29:52,289 - INFO - Sending request: {'action': 'get', 'key': '1', 'operation_id': '2b8f0ee2-db97-43e7-b826-14622f5eb544'}
+2024-12-04 23:29:52,294 - INFO - Received response: {'status': 'success', 'message': 'Key found', 'value': '1', 'data': None}
+2024-12-04 23:36:42,519 - INFO - Sending request: {'action': 'put', 'key': '1', 'value': '1', 'operation_id': '523a8cc4-7f18-483f-b62c-1835e3db733a'}
+2024-12-04 23:36:42,527 - INFO - Received response: {'status': 'success', 'message': "Data stored at node ['127.0.0.1:6002', '127.0.0.1:6000'].", 'value': None, 'data': None}
+2024-12-04 23:37:51,941 - INFO - Sending request: {'action': 'put', 'key': '2', 'value': '3', 'operation_id': '15cc618b-4d83-4ecc-89c6-c7ede701d9a9'}
+2024-12-04 23:37:51,948 - INFO - Received response: {'status': 'success', 'message': "Data stored at node ['127.0.0.1:6002', '127.0.0.1:6000'].", 'value': None, 'data': None}
+2024-12-04 23:59:45,658 - INFO - Sending request: {'action': 'put', 'key': '1', 'value': '2', 'operation_id': 'd555b29f-97f9-4da4-b2ac-5868da810617'}
+2024-12-04 23:59:45,666 - INFO - Received response: {'status': 'success', 'message': "Data stored at node ['127.0.0.1:6002', '127.0.0.1:6000'].", 'value': None, 'data': None}
+2024-12-05 00:00:30,685 - INFO - Sending request: {'action': 'put', 'key': '1', 'value': '2', 'operation_id': '264cc96e-d289-4d7d-98a9-270b6ac8a1e1'}
+2024-12-05 00:00:30,694 - INFO - Received response: {'status': 'success', 'message': "Data stored at node ['127.0.0.1:6002', '127.0.0.1:6000'].", 'value': None, 'data': None}
+2024-12-05 00:02:03,414 - INFO - Sending request: {'action': 'put', 'key': '3', 'value': '4', 'operation_id': 'ba0d9b8b-7dae-4d40-888d-e994697093a0'}
+2024-12-05 00:02:03,422 - INFO - Received response: {'status': 'success', 'message': "Data stored at node ['127.0.0.1:6002'].", 'value': None, 'data': None}
+2024-12-05 00:05:52,343 - INFO - Sending request: {'action': 'put', 'key': '4', 'value': '5', 'operation_id': '4301f8a7-748c-4441-ae90-9b42c87e380b'}
+2024-12-05 00:05:52,350 - INFO - Received response: {'status': 'success', 'message': "Data stored at node 127.0.0.1:6001 and ['127.0.0.1:6002'].", 'value': None, 'data': None}
+2024-12-05 00:06:06,694 - INFO - Sending request: {'action': 'get', 'key': '4', 'operation_id': 'b1ce029e-33fc-4b19-b4bc-d318c248aa17'}
+2024-12-05 00:06:06,698 - INFO - Received response: {'status': 'success', 'message': 'Key found', 'value': '5', 'data': None}
+2024-12-05 00:09:57,028 - INFO - Sending request: {'action': 'get', 'key': '4', 'operation_id': '04eb3267-ee54-41b6-aca7-f514716cb87e'}
+2024-12-05 00:09:57,043 - INFO - Received response: {'status': 'success', 'message': 'Key found', 'value': '5', 'data': None}
+2024-12-05 19:59:15,954 - INFO - Sending request: {'action': 'put', 'key': '1', 'value': '2', 'operation_id': '5225701b-9b09-46b0-b3d2-c8285cfca2f3'}
+2024-12-05 19:59:15,972 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNIMPLEMENTED
+	details = "Method not found!"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-05T11:59:15.9620204+00:00", grpc_status:12, grpc_message:"Method not found!"}"
+>
+2024-12-05 19:59:15,972 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNIMPLEMENTED\n\tdetails = "Method not found!"\n\tdebug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-05T11:59:15.9620204+00:00", grpc_status:12, grpc_message:"Method not found!"}"\n>'}
+2024-12-05 20:02:39,850 - INFO - Sending request: {'action': 'put', 'key': '3', 'value': '4', 'operation_id': '79d9d488-e097-44f7-814f-daa737d7021e'}
+2024-12-05 20:02:39,870 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: 'DistributedKVServerNode' object has no attribute 'raft_node'"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Exception calling application: \'DistributedKVServerNode\' object has no attribute \'raft_node\'", grpc_status:2, created_time:"2024-12-05T12:02:39.857708+00:00"}"
+>
+2024-12-05 20:02:39,870 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNKNOWN\n\tdetails = "Exception calling application: \'DistributedKVServerNode\' object has no attribute \'raft_node\'"\n\tdebug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Exception calling application: \\\'DistributedKVServerNode\\\' object has no attribute \\\'raft_node\\\'", grpc_status:2, created_time:"2024-12-05T12:02:39.857708+00:00"}"\n>'}
+2024-12-05 20:03:01,748 - INFO - Sending request: {'action': 'put', 'key': '2', 'value': '3', 'operation_id': 'b7fea813-412d-484d-b8e2-7088e4d58d6c'}
+2024-12-05 20:03:21,773 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame", grpc_status:14, created_time:"2024-12-05T12:03:21.7644756+00:00"}"
+>
+2024-12-05 20:03:21,773 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNAVAILABLE\n\tdetails = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame"\n\tdebug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame", grpc_status:14, created_time:"2024-12-05T12:03:21.7644756+00:00"}"\n>'}
+2024-12-05 20:04:11,553 - INFO - Sending request: {'action': 'put', 'key': '5', 'value': '6', 'operation_id': '207ee496-fd83-4ec3-ab15-51ad49dde9fd'}
+2024-12-05 20:04:31,583 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame", grpc_status:14, created_time:"2024-12-05T12:04:31.5732378+00:00"}"
+>
+2024-12-05 20:04:31,583 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNAVAILABLE\n\tdetails = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame"\n\tdebug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame", grpc_status:14, created_time:"2024-12-05T12:04:31.5732378+00:00"}"\n>'}
+2024-12-05 20:08:34,876 - INFO - Sending request: {'action': 'put', 'key': '4', 'value': '5', 'operation_id': '8655e97e-26a0-4f46-ac4e-39219c8f5b25'}
+2024-12-05 20:08:34,894 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: 'RaftNode' object has no attribute 'append_log'"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-05T12:08:34.884057+00:00", grpc_status:2, grpc_message:"Exception calling application: \'RaftNode\' object has no attribute \'append_log\'"}"
+>
+2024-12-05 20:08:34,894 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNKNOWN\n\tdetails = "Exception calling application: \'RaftNode\' object has no attribute \'append_log\'"\n\tdebug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-05T12:08:34.884057+00:00", grpc_status:2, grpc_message:"Exception calling application: \\\'RaftNode\\\' object has no attribute \\\'append_log\\\'"}"\n>'}
+2024-12-05 20:09:18,608 - INFO - Sending request: {'action': 'put', 'key': '3', 'value': '4', 'operation_id': 'c8f753db-9624-4d1a-8f9d-b21518d1151f'}
+2024-12-05 20:09:38,659 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame", grpc_status:14, created_time:"2024-12-05T12:09:38.6422279+00:00"}"
+>
+2024-12-05 20:09:38,659 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNAVAILABLE\n\tdetails = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame"\n\tdebug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame", grpc_status:14, created_time:"2024-12-05T12:09:38.6422279+00:00"}"\n>'}
+2024-12-05 20:12:25,239 - INFO - Sending request: {'action': 'put', 'key': '3', 'value': '4', 'operation_id': '47f2961e-4e3a-47de-a495-f050b92f8104'}
+2024-12-05 20:12:45,270 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame", grpc_status:14, created_time:"2024-12-05T12:12:45.260468+00:00"}"
+>
+2024-12-05 20:12:45,270 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNAVAILABLE\n\tdetails = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame"\n\tdebug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame", grpc_status:14, created_time:"2024-12-05T12:12:45.260468+00:00"}"\n>'}
+2024-12-05 20:13:15,584 - INFO - Sending request: {'action': 'get', 'key': '1', 'operation_id': '92e68a43-f076-4fef-92d0-ba5c3a297ca9'}
+2024-12-05 20:13:30,611 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:5000: IOCP/Socket: Connection reset (An existing connection was forcibly closed by the remote host.
+ -- 10054)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-05T12:13:30.6007783+00:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:5000: IOCP/Socket: Connection reset (An existing connection was forcibly closed by the remote host.\r\n -- 10054)"}"
+>
+2024-12-05 20:13:30,611 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNAVAILABLE\n\tdetails = "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:5000: IOCP/Socket: Connection reset (An existing connection was forcibly closed by the remote host.\r\n -- 10054)"\n\tdebug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-05T12:13:30.6007783+00:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:5000: IOCP/Socket: Connection reset (An existing connection was forcibly closed by the remote host.\\r\\n -- 10054)"}"\n>'}
+2024-12-05 20:13:51,250 - INFO - Sending request: {'action': 'get', 'key': '1', 'operation_id': '3da02f37-6b1b-40d2-960b-deb5d19f16ef'}
+2024-12-05 20:14:13,006 - INFO - Sending request: {'action': 'put', 'key': '3', 'value': '4', 'operation_id': 'b97623db-192a-45e6-8eb2-bf1697b42617'}
+2024-12-05 20:14:33,037 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame", grpc_status:14, created_time:"2024-12-05T12:14:33.0278743+00:00"}"
+>
+2024-12-05 20:14:33,038 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNAVAILABLE\n\tdetails = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame"\n\tdebug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame", grpc_status:14, created_time:"2024-12-05T12:14:33.0278743+00:00"}"\n>'}
+2024-12-05 20:17:19,997 - INFO - Sending request: {'action': 'put', 'key': '3', 'value': '4', 'operation_id': '3bfe2a59-1c65-4624-ae05-1072d62f6f76'}
+2024-12-05 20:17:40,049 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame", grpc_status:14, created_time:"2024-12-05T12:17:40.0356663+00:00"}"
+>
+2024-12-05 20:17:40,049 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNAVAILABLE\n\tdetails = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame"\n\tdebug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame", grpc_status:14, created_time:"2024-12-05T12:17:40.0356663+00:00"}"\n>'}
+2024-12-05 20:18:29,443 - INFO - Sending request: {'action': 'put', 'key': '3', 'value': '4', 'operation_id': '88a8f645-6ce4-45e6-84e1-dbeed4060c3d'}
+2024-12-05 20:18:49,466 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame", grpc_status:14, created_time:"2024-12-05T12:18:49.4558535+00:00"}"
+>
+2024-12-05 20:18:49,466 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNAVAILABLE\n\tdetails = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame"\n\tdebug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:5000: connection attempt timed out before receiving SETTINGS frame", grpc_status:14, created_time:"2024-12-05T12:18:49.4558535+00:00"}"\n>'}
+2024-12-05 20:25:55,878 - INFO - Sending request: {'action': 'put', 'key': '3', 'value': '4', 'operation_id': 'e7d12c32-fd5f-4987-92c8-ed79654953d7'}
+2024-12-05 20:25:55,886 - INFO - Received response: {'status': 'success', 'message': "Data stored at node 127.0.0.1:6001 and ['127.0.0.1:6002'].", 'value': None, 'data': None}
+2024-12-05 20:26:06,171 - INFO - Sending request: {'action': 'get', 'key': '3', 'operation_id': 'e1220bb6-342e-44b1-bd68-962e0dd95ea5'}
+2024-12-05 20:26:06,177 - INFO - Received response: {'status': 'success', 'message': 'Key found', 'value': '4', 'data': None}
+2024-12-05 20:34:59,800 - INFO - Sending request: {'action': 'put', 'key': '3', 'value': '4', 'operation_id': 'd6472683-46d4-426e-b60c-4bea76556d98'}
+2024-12-05 20:34:59,817 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNIMPLEMENTED
+	details = "Method not found!"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-05T12:34:59.8076226+00:00", grpc_status:12, grpc_message:"Method not found!"}"
+>
+2024-12-05 20:34:59,818 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNIMPLEMENTED\n\tdetails = "Method not found!"\n\tdebug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-05T12:34:59.8076226+00:00", grpc_status:12, grpc_message:"Method not found!"}"\n>'}
+2024-12-05 20:54:52,154 - INFO - Sending request: {'action': 'put', 'key': '1', 'value': '3', 'operation_id': '0d206d2e-785d-45cd-a021-4d2a851d0be7'}
+2024-12-05 20:54:52,163 - INFO - Received response: {'status': 'success', 'message': "Data stored at node 127.0.0.1:6001 and ['127.0.0.1:6002'].", 'value': None, 'data': None}
+2024-12-05 20:56:39,732 - INFO - Sending request: {'action': 'put', 'key': '3', 'value': '4', 'operation_id': '9fdeac16-676c-4f2b-994f-537b36d2b3fb'}
+2024-12-05 20:57:16,963 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "IOCP/Socket: Connection reset (An existing connection was forcibly closed by the remote host.
+ -- 10054)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-05T12:57:16.9500771+00:00", grpc_status:14, grpc_message:"IOCP/Socket: Connection reset (An existing connection was forcibly closed by the remote host.\r\n -- 10054)"}"
+>
+2024-12-05 20:57:16,964 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNAVAILABLE\n\tdetails = "IOCP/Socket: Connection reset (An existing connection was forcibly closed by the remote host.\r\n -- 10054)"\n\tdebug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-05T12:57:16.9500771+00:00", grpc_status:14, grpc_message:"IOCP/Socket: Connection reset (An existing connection was forcibly closed by the remote host.\\r\\n -- 10054)"}"\n>'}
+2024-12-05 20:57:43,555 - INFO - Sending request: {'action': 'put', 'key': '3', 'value': '4', 'operation_id': 'e125c71a-8611-44df-ba73-b0cec8f05e85'}
+2024-12-05 20:57:43,568 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: Protocol message LogEntry has no "action" field."
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-05T12:57:43.5586832+00:00", grpc_status:2, grpc_message:"Exception calling application: Protocol message LogEntry has no \"action\" field."}"
+>
+2024-12-05 20:57:43,568 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNKNOWN\n\tdetails = "Exception calling application: Protocol message LogEntry has no "action" field."\n\tdebug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-05T12:57:43.5586832+00:00", grpc_status:2, grpc_message:"Exception calling application: Protocol message LogEntry has no \\"action\\" field."}"\n>'}
+2024-12-05 21:15:32,749 - INFO - Sending request: {'action': 'put', 'key': '5', 'value': '6', 'operation_id': 'f815daf8-950a-4b82-9990-c7485c4d98d9'}
+2024-12-05 21:15:32,769 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: Protocol message LogEntry has no "action" field."
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-05T13:15:32.7582083+00:00", grpc_status:2, grpc_message:"Exception calling application: Protocol message LogEntry has no \"action\" field."}"
+>
+2024-12-05 21:15:32,769 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNKNOWN\n\tdetails = "Exception calling application: Protocol message LogEntry has no "action" field."\n\tdebug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-05T13:15:32.7582083+00:00", grpc_status:2, grpc_message:"Exception calling application: Protocol message LogEntry has no \\"action\\" field."}"\n>'}
+2024-12-05 21:16:02,539 - INFO - Sending request: {'action': 'put', 'key': '6', 'value': '6', 'operation_id': '13097bc9-45d6-4fa0-b5bb-d06b5f209d91'}
+2024-12-05 21:16:02,553 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: Protocol message LogEntry has no "action" field."
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Exception calling application: Protocol message LogEntry has no \"action\" field.", grpc_status:2, created_time:"2024-12-05T13:16:02.5424155+00:00"}"
+>
+2024-12-05 21:16:02,553 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNKNOWN\n\tdetails = "Exception calling application: Protocol message LogEntry has no "action" field."\n\tdebug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Exception calling application: Protocol message LogEntry has no \\"action\\" field.", grpc_status:2, created_time:"2024-12-05T13:16:02.5424155+00:00"}"\n>'}
+2024-12-05 21:24:41,765 - INFO - Sending request: {'action': 'put', 'key': '6', 'value': '6', 'operation_id': '57aa2359-e0ca-4715-bdf5-18939ce91d5e'}
+2024-12-05 21:27:06,838 - ERROR - Failed to connect to server: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNKNOWN
+	details = "Exception calling application: Protocol message LogEntry has no "action" field."
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-05T13:27:06.8268432+00:00", grpc_status:2, grpc_message:"Exception calling application: Protocol message LogEntry has no \"action\" field."}"
+>
+2024-12-05 21:27:06,838 - INFO - Received response: {'status': 'error', 'message': '<_InactiveRpcError of RPC that terminated with:\n\tstatus = StatusCode.UNKNOWN\n\tdetails = "Exception calling application: Protocol message LogEntry has no "action" field."\n\tdebug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-12-05T13:27:06.8268432+00:00", grpc_status:2, grpc_message:"Exception calling application: Protocol message LogEntry has no \\"action\\" field."}"\n>'}
+2024-12-05 21:52:02,916 - INFO - Sending request: {'action': 'put', 'key': '6', 'value': '7', 'operation_id': '8d1d1e5a-2d00-4d62-819e-af72e2a7b301'}
+2024-12-05 21:52:02,924 - INFO - Received response: {'status': 'success', 'message': "Data stored at node 127.0.0.1:6002 and ['127.0.0.1:6000'].", 'value': None, 'data': None}
+2024-12-05 22:26:08,603 - INFO - Sending request: {'action': 'put', 'key': '7', 'value': '8', 'operation_id': 'b2232ef4-ab8e-4680-a2e5-9d0c4113f928'}
+2024-12-05 22:26:08,611 - INFO - Received response: {'status': 'success', 'message': "Data stored at node 127.0.0.1:6000 and ['127.0.0.1:6001'].", 'value': None, 'data': None}

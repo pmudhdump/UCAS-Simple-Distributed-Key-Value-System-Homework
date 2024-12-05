@@ -8,10 +8,11 @@ from concurrent import futures
 import grpc
 
 
+
 class RaftNode(raft_pb2_grpc.RaftServiceServicer):
     def __init__(self, host, port, raft_config):
-        self.host = host
-        self.port = port
+        self.host = raft_config['host']
+        self.port = raft_config['port']
         self.peers = raft_config['peers']  # 其他节点地址
         self.state = "FOLLOWER"
         self.term = 0
@@ -160,7 +161,8 @@ class RaftNode(raft_pb2_grpc.RaftServiceServicer):
 
     def AppendEntries(self, request, context):
         """处理日志追加请求"""
-        print(f"Node {self.host}:{self.port} received AppendEntries from leader {request.leader_id} in term {request.term}")
+        print(
+            f"Node {self.host}:{self.port} received AppendEntries from leader {request.leader_id} in term {request.term}")
 
         if request.term < self.term:
             return raft_pb2.AppendEntriesResponse(term=self.term, success=False)
@@ -169,28 +171,54 @@ class RaftNode(raft_pb2_grpc.RaftServiceServicer):
         self.state = "FOLLOWER"
         self.last_heartbeat = time.time()
 
+        # 判断 entries 是否为空，若为空则视为心跳，不处理日志
+        if not request.entries:
+            print(
+                f"Node {self.host}:{self.port} received heartbeat from leader {request.leader_id} in term {self.term}")
+        else:
+            # 如果有日志条目，保存到操作日志中
+            for entry in request.entries:
+                # message LogEntry {
+                #     string action = 1;  // 例如, PUT、DELETE 等操作
+                #     string key = 2;
+                #     string value = 3;
+                #     string operation_id = 4;
+                #     int32 term = 5;
+                # }
+                log_entry = {
+                    'action': entry.action,
+                    'key': entry.key,
+                    'value': entry.value,
+                    'operation_id': entry.operation_id,
+                    'term': entry.term  # 假设日志条目中包含命令或操作
+                }
+                self.logs.append(log_entry)  # 将日志条目添加到本地日志
+
+                # 记录日志到文件
+                self.data_logger.info(f"Appended log: {log_entry}")
+
         return raft_pb2.AppendEntriesResponse(term=self.term, success=True)
 
     def append_log(self, log_entry):
         """记录日志，并同步到所有跟随者"""
-        return
-        # log_entry['term'] = self.term  # 确保日志条目包含当前任期
-        # self.logs.append(log_entry)  # 将日志条目添加到本地日志
-        # self.data_logger.info(f"Appended log: {log_entry}")  # 记录到文件
-        #
-        # # 向所有跟随者发送日志追加请求
-        # request = raft_pb2.AppendEntriesRequest(
-        #     term=self.term,
-        #     leader_id=self.host,
-        #     prev_log_index=len(self.logs) - 1,
-        #     prev_log_term=self.logs[-2]['term'] if len(self.logs) > 1 else 0,
-        #     entries=[raft_pb2.LogEntry(**log_entry)],
-        #     leader_commit=self.commit_index
-        # )
-        #
-        # # 发送到所有的 peer 节点
-        # for peer in self.peers:
-        #     self.send_append_entries(peer, request)
+        # return
+        log_entry['term'] = self.term  # 确保日志条目包含当前任期
+        self.logs.append(log_entry)  # 将日志条目添加到本地日志
+        self.data_logger.info(f"Appended log: {log_entry}")  # 记录到文件
+
+        # 向所有跟随者发送日志追加请求
+        request = raft_pb2.AppendEntriesRequest(
+            term=self.term,
+            leader_id=self.host,
+            prev_log_index=len(self.logs) - 1,
+            prev_log_term=self.logs[-2]['term'] if len(self.logs) > 1 else 0,
+            entries=[raft_pb2.LogEntry(**log_entry)],
+            leader_commit=self.commit_index
+        )
+
+        # 发送到所有的 peer 节点
+        for peer in self.peers:
+            self.send_append_entries(peer, request)
 
     def query_log(self, log_query):
         """查询外部操作日志（例如 GET 请求）"""

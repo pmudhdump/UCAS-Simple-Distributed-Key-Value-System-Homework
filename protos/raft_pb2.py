@@ -24,29 +24,29 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nraft.proto\x12\x04raft\"8\n\x08LogEntry\x12\r\n\x05index\x18\x01 \x01(\x03\x12\x0c\n\x04term\x18\x02 \x01(\x03\x12\x0f\n\x07\x63ommand\x18\x03 \x01(\t\"g\n\x12RequestVoteRequest\x12\x0c\n\x04term\x18\x01 \x01(\x03\x12\x14\n\x0c\x63\x61ndidate_id\x18\x02 \x01(\t\x12\x16\n\x0elast_log_index\x18\x03 \x01(\x03\x12\x15\n\rlast_log_term\x18\x04 \x01(\x03\"9\n\x13RequestVoteResponse\x12\x0c\n\x04term\x18\x01 \x01(\x03\x12\x14\n\x0cvote_granted\x18\x02 \x01(\x08\"\x9e\x01\n\x14\x41ppendEntriesRequest\x12\x0c\n\x04term\x18\x01 \x01(\x03\x12\x11\n\tleader_id\x18\x02 \x01(\t\x12\x16\n\x0eprev_log_index\x18\x03 \x01(\x03\x12\x15\n\rprev_log_term\x18\x04 \x01(\x03\x12\x1f\n\x07\x65ntries\x18\x05 \x03(\x0b\x32\x0e.raft.LogEntry\x12\x15\n\rleader_commit\x18\x06 \x01(\x03\"6\n\x15\x41ppendEntriesResponse\x12\x0c\n\x04term\x18\x01 \x01(\x03\x12\x0f\n\x07success\x18\x02 \x01(\x08\" \n\x10HeartbeatRequest\x12\x0c\n\x04term\x18\x01 \x01(\x03\"!\n\x11HeartbeatResponse\x12\x0c\n\x04term\x18\x01 \x01(\x03*4\n\tNodeState\x12\x0c\n\x08\x46OLLOWER\x10\x00\x12\r\n\tCANDIDATE\x10\x01\x12\n\n\x06LEADER\x10\x02\x32\xd9\x01\n\x0bRaftService\x12\x42\n\x0bRequestVote\x12\x18.raft.RequestVoteRequest\x1a\x19.raft.RequestVoteResponse\x12H\n\rAppendEntries\x12\x1a.raft.AppendEntriesRequest\x1a\x1b.raft.AppendEntriesResponse\x12<\n\tHeartbeat\x12\x16.raft.HeartbeatRequest\x1a\x17.raft.HeartbeatResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nraft.proto\x12\x04raft\"Z\n\x08LogEntry\x12\x0e\n\x06\x61\x63tion\x18\x01 \x01(\t\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\x12\x14\n\x0coperation_id\x18\x04 \x01(\t\x12\x0c\n\x04term\x18\x05 \x01(\x05\"g\n\x12RequestVoteRequest\x12\x0c\n\x04term\x18\x01 \x01(\x03\x12\x14\n\x0c\x63\x61ndidate_id\x18\x02 \x01(\t\x12\x16\n\x0elast_log_index\x18\x03 \x01(\x03\x12\x15\n\rlast_log_term\x18\x04 \x01(\x03\"9\n\x13RequestVoteResponse\x12\x0c\n\x04term\x18\x01 \x01(\x03\x12\x14\n\x0cvote_granted\x18\x02 \x01(\x08\"\x9e\x01\n\x14\x41ppendEntriesRequest\x12\x0c\n\x04term\x18\x01 \x01(\x03\x12\x11\n\tleader_id\x18\x02 \x01(\t\x12\x16\n\x0eprev_log_index\x18\x03 \x01(\x03\x12\x15\n\rprev_log_term\x18\x04 \x01(\x03\x12\x1f\n\x07\x65ntries\x18\x05 \x03(\x0b\x32\x0e.raft.LogEntry\x12\x15\n\rleader_commit\x18\x06 \x01(\x03\"6\n\x15\x41ppendEntriesResponse\x12\x0c\n\x04term\x18\x01 \x01(\x03\x12\x0f\n\x07success\x18\x02 \x01(\x08\" \n\x10HeartbeatRequest\x12\x0c\n\x04term\x18\x01 \x01(\x03\"!\n\x11HeartbeatResponse\x12\x0c\n\x04term\x18\x01 \x01(\x03*4\n\tNodeState\x12\x0c\n\x08\x46OLLOWER\x10\x00\x12\r\n\tCANDIDATE\x10\x01\x12\n\n\x06LEADER\x10\x02\x32\xd9\x01\n\x0bRaftService\x12\x42\n\x0bRequestVote\x12\x18.raft.RequestVoteRequest\x1a\x19.raft.RequestVoteResponse\x12H\n\rAppendEntries\x12\x1a.raft.AppendEntriesRequest\x1a\x1b.raft.AppendEntriesResponse\x12<\n\tHeartbeat\x12\x16.raft.HeartbeatRequest\x1a\x17.raft.HeartbeatResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'raft_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_NODESTATE']._serialized_start=528
-  _globals['_NODESTATE']._serialized_end=580
+  _globals['_NODESTATE']._serialized_start=562
+  _globals['_NODESTATE']._serialized_end=614
   _globals['_LOGENTRY']._serialized_start=20
-  _globals['_LOGENTRY']._serialized_end=76
-  _globals['_REQUESTVOTEREQUEST']._serialized_start=78
-  _globals['_REQUESTVOTEREQUEST']._serialized_end=181
-  _globals['_REQUESTVOTERESPONSE']._serialized_start=183
-  _globals['_REQUESTVOTERESPONSE']._serialized_end=240
-  _globals['_APPENDENTRIESREQUEST']._serialized_start=243
-  _globals['_APPENDENTRIESREQUEST']._serialized_end=401
-  _globals['_APPENDENTRIESRESPONSE']._serialized_start=403
-  _globals['_APPENDENTRIESRESPONSE']._serialized_end=457
-  _globals['_HEARTBEATREQUEST']._serialized_start=459
-  _globals['_HEARTBEATREQUEST']._serialized_end=491
-  _globals['_HEARTBEATRESPONSE']._serialized_start=493
-  _globals['_HEARTBEATRESPONSE']._serialized_end=526
-  _globals['_RAFTSERVICE']._serialized_start=583
-  _globals['_RAFTSERVICE']._serialized_end=800
+  _globals['_LOGENTRY']._serialized_end=110
+  _globals['_REQUESTVOTEREQUEST']._serialized_start=112
+  _globals['_REQUESTVOTEREQUEST']._serialized_end=215
+  _globals['_REQUESTVOTERESPONSE']._serialized_start=217
+  _globals['_REQUESTVOTERESPONSE']._serialized_end=274
+  _globals['_APPENDENTRIESREQUEST']._serialized_start=277
+  _globals['_APPENDENTRIESREQUEST']._serialized_end=435
+  _globals['_APPENDENTRIESRESPONSE']._serialized_start=437
+  _globals['_APPENDENTRIESRESPONSE']._serialized_end=491
+  _globals['_HEARTBEATREQUEST']._serialized_start=493
+  _globals['_HEARTBEATREQUEST']._serialized_end=525
+  _globals['_HEARTBEATRESPONSE']._serialized_start=527
+  _globals['_HEARTBEATRESPONSE']._serialized_end=560
+  _globals['_RAFTSERVICE']._serialized_start=617
+  _globals['_RAFTSERVICE']._serialized_end=834
 # @@protoc_insertion_point(module_scope)

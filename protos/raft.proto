@@ -11,10 +11,13 @@ enum NodeState {
 
 // 日志条目结构
 message LogEntry {
-    int64 index = 1;  // 日志条目的索引
-    int64 term = 2;   // 日志条目的任期
-    string command = 3;  // 日志条目的命令
+    string action = 1;  // 例如, PUT、DELETE 等操作
+    string key = 2;
+    string value = 3;
+    string operation_id = 4;
+    int32 term = 5;
 }
+
 
 // RequestVote RPC 请求
 message RequestVoteRequest {
